@@ -4,6 +4,8 @@ Uses your webcam (or an uploaded dashcam video) to detect **potholes**,
 **garbage areas**, and **road encroachment** with your 3 Roboflow-trained
 models, confirms each candidate with **Gemini**, and pins confirmed issues
 on a live map with the current GPS location.
+<img width="1366" height="768" alt="62a0e29b-7fdb-4d2f-b902-c7e7c9125a0e" src="https://github.com/user-attachments/assets/95deb616-a328-44ad-8b5f-a4a56fd651e9" />
+
 
 ```
 Camera / video frame
