@@ -1,25 +1,31 @@
-# 🚦 CivicScan — AI Road Issue Detection
+# 🚦 CivicScan — AI Road Damage & Hazard Detection
 
 <p align="center">
   <strong>Detect road hazards. Verify them with AI. Pin them on a live map.</strong>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/dishantpatil-dev/AI-Road-Encroachment-Detection?style=for-the-badge&logo=github&label=STARS" alt="GitHub stars" />
-  <img src="https://img.shields.io/github/forks/dishantpatil-dev/AI-Road-Encroachment-Detection?style=for-the-badge&logo=github&label=FORKS" alt="GitHub forks" />
-  <img src="https://img.shields.io/github/last-commit/dishantpatil-dev/AI-Road-Encroachment-Detection?style=for-the-badge&logo=github&label=UPDATED" alt="Last commit" />
+  <img src="https://img.shields.io/github/stars/dishantpatil-dev/AI-Road-Damage-Hazard-Detection-using-Computer-Vision-YOLO-Gemini-Flask-and-GPS?style=for-the-badge&logo=github&label=STARS" alt="GitHub stars" />
+  <img src="https://img.shields.io/github/forks/dishantpatil-dev/AI-Road-Damage-Hazard-Detection-using-Computer-Vision-YOLO-Gemini-Flask-and-GPS?style=for-the-badge&logo=github&label=FORKS" alt="GitHub forks" />
+  <img src="https://img.shields.io/github/last-commit/dishantpatil-dev/AI-Road-Damage-Hazard-Detection-using-Computer-Vision-YOLO-Gemini-Flask-and-GPS?style=for-the-badge&logo=github&label=UPDATED" alt="Last commit" />
   <img src="https://img.shields.io/badge/Python-3.9%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.9+" />
 </p>
 
 <p align="center">
-  <a href="https://github.com/dishantpatil-dev/AI-Road-Encroachment-Detection">⭐ Star this project</a>
+  <a href="https://github.com/dishantpatil-dev/AI-Road-Damage-Hazard-Detection-using-Computer-Vision-YOLO-Gemini-Flask-and-GPS">⭐ Star this project</a>
   ·
-  <a href="https://github.com/dishantpatil-dev/AI-Road-Encroachment-Detection/issues">🐛 Report an issue</a>
+  <a href="https://github.com/dishantpatil-dev/AI-Road-Damage-Hazard-Detection-using-Computer-Vision-YOLO-Gemini-Flask-and-GPS/issues">🐛 Report an issue</a>
   ·
-  <a href="https://github.com/dishantpatil-dev/AI-Road-Encroachment-Detection/issues/new">💡 Request a feature</a>
+  <a href="https://github.com/dishantpatil-dev/AI-Road-Damage-Hazard-Detection-using-Computer-Vision-YOLO-Gemini-Flask-and-GPS/issues/new">💡 Request a feature</a>
 </p>
 
 ---
+
+## 🎯 AI Road Damage & Hazard Detection
+
+**CivicScan** is an open-source computer-vision road monitoring prototype for detecting and verifying road damage and hazards from camera, image, and video input.
+
+**Core searchable keywords:** `pothole detection` · `road damage detection` · `road hazard detection` · `computer vision` · `YOLO` · `OpenCV` · `Gemini` · `Flask` · `GPS`
 
 ## 🎯 What is CivicScan?
 
@@ -39,7 +45,7 @@ The pipeline is intentionally designed as a **detect → verify → map** workfl
   <img width="1366" height="768" src="https://github.com/user-attachments/assets/95deb616-a328-44ad-8b5f-a4a56fd651e9" alt="CivicScan live road issue detection interface" />
 </p>
 
-> The screenshot above shows the CivicScan interface and live detection workflow. A short screen recording or GIF can be added here later to make the repository easier to evaluate at a glance.
+> The screenshot above shows the CivicScan interface and live detection workflow. A short screen recording or GIF can be added here to make the repository easier to evaluate at a glance.
 
 ---
 
@@ -152,8 +158,8 @@ That separation also makes the system easier to tune: the detection threshold an
 ### 2. Clone
 
 ```bash
-git clone https://github.com/dishantpatil-dev/AI-Road-Encroachment-Detection.git
-cd AI-Road-Encroachment-Detection
+git clone https://github.com/dishantpatil-dev/AI-Road-Damage-Hazard-Detection-using-Computer-Vision-YOLO-Gemini-Flask-and-GPS.git
+cd AI-Road-Damage-Hazard-Detection-using-Computer-Vision-YOLO-Gemini-Flask-and-GPS
 ```
 
 ### 3. Create a virtual environment
@@ -270,8 +276,8 @@ CivicScan is currently a **prototype**, not a production traffic-monitoring plat
 - [ ] Historical incident dashboard
 - [ ] Better issue filtering and severity classification
 - [ ] Production deployment
-- [ ] Automated tests
-- [ ] CI/CD pipeline
+- [x] Automated tests
+- [x] CI/CD pipeline
 - [ ] Performance benchmarking
 - [ ] Short demo video / GIF
 - [ ] Public API documentation
@@ -294,12 +300,11 @@ For bugs or feature ideas, use the repository's **Issues** tab.
 
 ## ⭐ Support the Project
 
-If CivicScan is useful, interesting, or helps you learn about computer vision, **consider giving the repository a star**.
+If CivicScan is useful for learning computer vision, experimenting with AI verification, or building civic-tech systems, consider giving the repository a star.
 
-It helps the project become more discoverable and gives useful feedback about community interest.
 
 <p align="center">
-  <a href="https://github.com/dishantpatil-dev/AI-Road-Encroachment-Detection">
+  <a href="https://github.com/dishantpatil-dev/AI-Road-Damage-Hazard-Detection-using-Computer-Vision-YOLO-Gemini-Flask-and-GPS">
     <img src="https://img.shields.io/badge/⭐_Star_CivicScan-on_GitHub-181717?style=for-the-badge&logo=github" alt="Star CivicScan on GitHub" />
   </a>
 </p>
@@ -327,9 +332,7 @@ pytest -q
 
 Every push and pull request to `main` runs the test suite through GitHub Actions.
 
-## 🔐 Configuration
 
-A safe starter configuration is provided in `.env.example`.
 
 Copy it locally:
 
@@ -344,13 +347,3 @@ cp .env.example .env
 ```
 
 Never commit `.env` or real API credentials.
-
-## 🤝 Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, testing and pull-request guidance.
-
-Security-sensitive issues should follow [SECURITY.md](SECURITY.md).
-
-## 🌟 Why Star CivicScan?
-
-If CivicScan is useful for learning computer vision, experimenting with AI verification, or building civic-tech systems, a GitHub star helps other developers discover the project.
