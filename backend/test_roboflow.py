@@ -15,6 +15,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# This is a manual diagnostic script, not a pytest test module.
+__test__ = False
+
 ROBOFLOW_INFER_URL = "https://serverless.roboflow.com"
 API_KEY = os.environ.get("ROBOFLOW_API_KEY")
 WORKSPACE = os.environ.get("ROBOFLOW_WORKSPACE")
