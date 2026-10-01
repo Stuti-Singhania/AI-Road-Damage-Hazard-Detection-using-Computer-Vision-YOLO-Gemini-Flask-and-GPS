@@ -121,7 +121,7 @@ def api_analyze():
     if "," in data_url:
         data_url = data_url.split(",", 1)[1]
     try:
-        image_bytes = base64.b64decode(data_url)
+        image_bytes = base64.b64decode(data_url, validate=True)
     except Exception:
         return jsonify({"error": "invalid image payload"}), 400
 
