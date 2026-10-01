@@ -309,3 +309,48 @@ It helps the project become more discoverable and gives useful feedback about co
 <p align="center">
   <strong>Built with Python • Computer Vision • AI • Maps</strong>
 </p>
+
+
+## 🧪 Development & Testing
+
+Install the development dependencies:
+
+```bash
+pip install -r requirements-dev.txt
+```
+
+Run the automated tests:
+
+```bash
+pytest -q
+```
+
+Every push and pull request to `main` runs the test suite through GitHub Actions.
+
+## 🔐 Configuration
+
+A safe starter configuration is provided in `.env.example`.
+
+Copy it locally:
+
+```bash
+copy .env.example .env
+```
+
+On macOS/Linux:
+
+```bash
+cp .env.example .env
+```
+
+Never commit `.env` or real API credentials.
+
+## 🤝 Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, testing and pull-request guidance.
+
+Security-sensitive issues should follow [SECURITY.md](SECURITY.md).
+
+## 🌟 Why Star CivicScan?
+
+If CivicScan is useful for learning computer vision, experimenting with AI verification, or building civic-tech systems, a GitHub star helps other developers discover the project.
