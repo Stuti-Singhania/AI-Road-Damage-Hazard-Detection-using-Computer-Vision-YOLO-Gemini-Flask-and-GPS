@@ -138,3 +138,25 @@ def test_analyze_rejects_missing_image(client):
     assert response.get_json() == {
         "error": "invalid image payload"
     }
+
+
+def test_analyze_rejects_malformed_json(client):
+    response = client.post(
+        "/api/analyze",
+        data='{"image": ',
+        content_type="application/json",
+    )
+
+    assert response.status_code == 400
+
+
+def test_analyze_rejects_non_object_json(client):
+    response = client.post(
+        "/api/analyze",
+        json=[],
+    )
+
+    assert response.status_code == 400
+    assert response.get_json() == {
+        "error": "invalid image payload"
+    }

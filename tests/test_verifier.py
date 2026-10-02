@@ -167,3 +167,192 @@ def test_verify_detection_uses_gemini_when_api_key_exists(monkeypatch):
     )
 
     assert result == expected
+
+
+def test_gemini_verify_rejects_invalid_confirmed_type(monkeypatch):
+    response = Mock()
+    response.raise_for_status.return_value = None
+    response.json.return_value = {
+        "candidates": [
+            {
+                "content": {
+                    "parts": [
+                        {
+                            "text": (
+                                '{"confirmed": "false", '
+                                '"confidence": 0.20, '
+                                '"reason": "Only a shadow"}'
+                            )
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+
+    monkeypatch.setattr(
+        verifier.requests,
+        "post",
+        lambda *args, **kwargs: response,
+    )
+
+    result = verifier._gemini_verify(
+        b"fake-image",
+        "Pothole",
+        "test-api-key",
+        20,
+    )
+
+    assert result["confirmed"] is False
+    assert result["error"] is not None
+
+
+def test_gemini_verify_rejects_confidence_out_of_range(monkeypatch):
+    response = Mock()
+    response.raise_for_status.return_value = None
+    response.json.return_value = {
+        "candidates": [
+            {
+                "content": {
+                    "parts": [
+                        {
+                            "text": (
+                                '{"confirmed": true, '
+                                '"confidence": 1.5, '
+                                '"reason": "Genuine pothole"}'
+                            )
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+
+    monkeypatch.setattr(
+        verifier.requests,
+        "post",
+        lambda *args, **kwargs: response,
+    )
+
+    result = verifier._gemini_verify(
+        b"fake-image",
+        "Pothole",
+        "test-api-key",
+        20,
+    )
+
+    assert result["confirmed"] is False
+    assert result["confidence"] == 0.0
+    assert result["error"] is not None
+
+
+def test_gemini_verify_rejects_missing_required_field(monkeypatch):
+    response = Mock()
+    response.raise_for_status.return_value = None
+    response.json.return_value = {
+        "candidates": [
+            {
+                "content": {
+                    "parts": [
+                        {
+                            "text": (
+                                '{"confirmed": true, '
+                                '"confidence": 0.90}'
+                            )
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+
+    monkeypatch.setattr(
+        verifier.requests,
+        "post",
+        lambda *args, **kwargs: response,
+    )
+
+    result = verifier._gemini_verify(
+        b"fake-image",
+        "Pothole",
+        "test-api-key",
+        20,
+    )
+
+    assert result["confirmed"] is False
+    assert result["confidence"] == 0.0
+    assert result["error"] is not None
+
+
+def test_gemini_verify_rejects_invalid_reason_type(monkeypatch):
+    response = Mock()
+    response.raise_for_status.return_value = None
+    response.json.return_value = {
+        "candidates": [
+            {
+                "content": {
+                    "parts": [
+                        {
+                            "text": (
+                                '{"confirmed": true, '
+                                '"confidence": 0.90, '
+                                '"reason": 123}'
+                            )
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+
+    monkeypatch.setattr(
+        verifier.requests,
+        "post",
+        lambda *args, **kwargs: response,
+    )
+
+    result = verifier._gemini_verify(
+        b"fake-image",
+        "Pothole",
+        "test-api-key",
+        20,
+    )
+
+    assert result["confirmed"] is False
+    assert result["confidence"] == 0.0
+    assert result["error"] is not None
+
+
+def test_gemini_verify_rejects_non_object_json(monkeypatch):
+    response = Mock()
+    response.raise_for_status.return_value = None
+    response.json.return_value = {
+        "candidates": [
+            {
+                "content": {
+                    "parts": [
+                        {
+                            "text": "[]"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+
+    monkeypatch.setattr(
+        verifier.requests,
+        "post",
+        lambda *args, **kwargs: response,
+    )
+
+    result = verifier._gemini_verify(
+        b"fake-image",
+        "Pothole",
+        "test-api-key",
+        20,
+    )
+
+    assert result["confirmed"] is False
+    assert result["confidence"] == 0.0
+    assert result["error"] is not None

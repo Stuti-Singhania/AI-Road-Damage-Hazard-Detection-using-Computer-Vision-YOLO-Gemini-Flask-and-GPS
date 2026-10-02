@@ -1,5 +1,6 @@
 import json
 
+from unittest.mock import Mock
 from backend import detectors
 from backend import storage
 from backend import verifier
@@ -125,3 +126,24 @@ def test_run_one_model_handles_request_failure(monkeypatch):
 
     assert result["predictions"] == []
     assert result["error"] == "request timed out"
+
+
+def test_run_one_model_handles_http_error(monkeypatch):
+    monkeypatch.setenv("ROBOFLOW_API_KEY", "test-key")
+    monkeypatch.setenv("ROBOFLOW_WORKSPACE", "test-workspace")
+    monkeypatch.setenv("ROBOFLOW_POTHOLE_WORKFLOW_ID", "test-workflow")
+
+    def fake_post(url, json, timeout):
+        response = Mock()
+        response.text = "Roboflow service unavailable"
+        error = detectors.requests.exceptions.HTTPError("500 Server Error")
+        error.response = response
+        raise error
+
+    monkeypatch.setattr(detectors.requests, "post", fake_post)
+
+    result = detectors._run_one_model("pothole", b"fake-image")
+
+    assert result["predictions"] == []
+    assert "500 Server Error" in result["error"]
+    assert "Roboflow service unavailable" in result["error"]
