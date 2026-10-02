@@ -126,3 +126,15 @@ def test_status_uses_heuristic_without_gemini_key(client, monkeypatch):
 
     assert body["verification_mode"] == "heuristic"
     assert body["heuristic_threshold"] == 0.65
+
+
+def test_analyze_rejects_missing_image(client):
+    response = client.post(
+        "/api/analyze",
+        json={},
+    )
+
+    assert response.status_code == 400
+    assert response.get_json() == {
+        "error": "invalid image payload"
+    }

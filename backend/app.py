@@ -118,6 +118,9 @@ def api_analyze():
     lat = payload.get("lat")
     lon = payload.get("lon")
 
+    if not data_url:
+        return jsonify({"error": "invalid image payload"}), 400
+
     if "," in data_url:
         data_url = data_url.split(",", 1)[1]
     try:
